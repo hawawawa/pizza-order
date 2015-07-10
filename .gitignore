@@ -1,0 +1,12 @@
+# Logs
+logs
+*.log
+
+#node modules
+node_modules
+
+#.DS_Store files
+.DS\_Store
+
+#vim swap files
+*.sw?
