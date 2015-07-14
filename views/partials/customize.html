@@ -1,0 +1,46 @@
+<form>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label for="number">Quantity</label>
+        <select class='form-control' name="number">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <label for="pizzaSize">Pizza Size</label>
+        <select class='form-control' name="pizzaSize">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+        <label for="crustType">Crust Type</label>
+        <select class='form-control' name="crustType">
+          <option value="pan">Pan</option>
+          <option value="thin">Thin</option>
+          <option value="stuff">Stuff Crust</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="toppings">Toppings</label>
+        <label class="checkbox">
+          <input type="checkbox" value="cheese"> Extra Cheese
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" value="bacon"> Bacon
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" value="beef"> Beef
+        </label>
+      </div>
+    </div>
+  </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

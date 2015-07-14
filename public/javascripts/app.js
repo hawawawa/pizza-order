@@ -1,16 +1,39 @@
 angular.module('myApp', ['ngRoute', 'ui.bootstrap'])
-  .controller('MainCtrl', function($scope){
-    $scope.title = "Index";
-    $scope.content = "Main content";
+
+  .controller('MainCtrl', function($scope, $modal){
+    $scope.title = "PizzaHut Clone";
+    $scope.content = "Select a Pizza to Start";
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'partials/order.html',
+        controller: 'ModalCtrl',
+        resolve: {
+          items: function () {
+            return size;
+          }
+        }
+      });
+    };
   })
 
-  .controller('UserCtrl', function($scope, $http) {
-    $scope.title = "Users"
-    $http.get("/data/users").success(function(response){
-      console.log(response);
-        $scope.users = response;
-    });
-    $scope.content = "User Page";
+  .controller('ModalCtrl', function($scope, $modalInstance, items) {
+    $scope.title = "Customize - " + items;
+
+    if (items.indexOf("own") > -1 ){
+      console.log(items);
+    }
+    $scope.items = items;
+
+    $scope.ok = function () {
+      $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
   })
 
   .config(function ($routeProvider, $locationProvider) {
@@ -20,9 +43,9 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap'])
           templateUrl: 'partials/main.html',
           controller: 'MainCtrl'
       })
-      .when('/users', {
-          templateUrl: 'partials/users.html',
-          controller: 'UserCtrl'
+      .when('/customize/:name', {
+          templateUrl: 'partials/customize.html',
+          controller: 'ModalCtrl'
       })
       .otherwise({
         redirectTo: '/'

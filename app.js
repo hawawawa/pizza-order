@@ -1,15 +1,22 @@
+/// <reference path="typings/node/node.d.ts"/>
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/testdb');
-var routes = require('./routes/index');
 
 var app = express();
+
+// db setup
+// var mongo = require('mongodb');
+// var monk = require('monk');
+// var db = monk('localhost:27017/testdb');
+// app.use(function(req,res,next){
+//     req.db = db;
+//     next();
+// });
+
 
 
 // view engine setup
@@ -24,10 +31,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
+
+// routes setup
+var routes = require('./routes/index');
 app.use('/', routes);
 
 // catch 404 and forward to error handler

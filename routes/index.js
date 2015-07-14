@@ -10,13 +10,13 @@ router.get('/partials/:name', function (req, res){
   res.render('partials/' + name);
 });
 
-router.get('/data/users', function(req, res){
-  // res.json([{ "email": "hi@hi.com", "password": "123"}]);
-  var db = req.db;
-  var collection = db.get('users');
-  collection.find({},{},function(e,data){
-    res.json(data);
-  });
+router.get('/customize/:name', function (req, res){
+  res.render('partials/customize');
+});
+
+router.get('/order/confirmation', function (req, res){
+  var name = req.params.name;
+  res.render('partials/customize');
 });
 
 router.get('/', function(req, res, next) {
